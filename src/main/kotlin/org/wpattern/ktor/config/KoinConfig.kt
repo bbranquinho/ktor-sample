@@ -33,8 +33,16 @@ private fun loadProfile(profile: String): Map<String, String> {
 
     val configuration = ConfigurationProperties.systemProperties() overriding
             EnvironmentVariables() overriding
-            ConfigurationProperties.fromFile(File("src/main/resources/" + profileFilename)) overriding
+            ConfigurationProperties.fromFile(File("src/main/resources$profileFilename")) overriding
             ConfigurationProperties.fromResource(profileFilename)
+
+//    val configuration = ConfigurationProperties.systemProperties().overriding(
+//            EnvironmentVariables().overriding(
+//                    ConfigurationProperties.fromFile(File("src/main/resources$profileFilename")).overriding(
+//                            ConfigurationProperties.fromResource(profileFilename)
+//                    )
+//            )
+//    )
 
     return configuration
             .list()
