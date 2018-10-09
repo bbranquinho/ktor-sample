@@ -20,7 +20,7 @@ class ProductFileEventRepositoryTest {
         assertException(
                 expectedException = NotFoundException::class.java,
                 expectedMessage = "AggregateID not found.",
-                assertThat = { it.aggregateId == aggregateId },
+//                assertThat = { it.aggregateId == aggregateId },
                 block = { productFileEventRepository.append(aggregateId = aggregateId, event = event) }
         )
     }
