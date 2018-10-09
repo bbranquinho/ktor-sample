@@ -13,6 +13,8 @@
         <kotlin.version>1.3.0-rc-57</kotlin.version>
         <junit.version>4.12</junit.version>
         <ktor.version>0.9.5-rc13</ktor.version>
+        <koin.version>1.0.1</koin.version>
+        <kconfig.version>1.6.10.0</kconfig.version>
     </properties>
 
     <repositories>
@@ -39,14 +41,7 @@
 
     <pluginRepositories>
         <pluginRepository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
             <id>bintray</id>
-            <name>Bintray Kotlin EAP Repository</name>
             <url>http://dl.bintray.com/kotlin/kotlin-eap</url>
         </pluginRepository>
     </pluginRepositories>
@@ -55,7 +50,7 @@
         <!-- Kotlin -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <artifactId>kotlin-stdlib</artifactId>
             <version>${kotlin.version}</version>
         </dependency>
 
@@ -70,6 +65,13 @@
             <groupId>io.ktor</groupId>
             <artifactId>ktor-jackson</artifactId>
             <version>${ktor.version}</version>
+        </dependency>
+
+        <!-- Logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
         </dependency>
 
         <!-- Ktor Server - Netty -->
@@ -87,17 +89,32 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Koin -->
+        <dependency>
+            <groupId>org.koin</groupId>
+            <artifactId>koin-ktor</artifactId>
+            <version>${koin.version}</version>
+        </dependency>
+
+        <!-- KConfig -->
+        <dependency>
+            <groupId>com.natpryce</groupId>
+            <artifactId>konfig</artifactId>
+            <version>${kconfig.version}</version>
+        </dependency>
+
+        <!-- Koin Test -->
+        <dependency>
+            <groupId>org.koin</groupId>
+            <artifactId>koin-test</artifactId>
+            <version>${koin.version}</version>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
-            <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -127,9 +144,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <jvmTarget>1.8</jvmTarget>
-                </configuration>
             </plugin>
         </plugins>
     </build>

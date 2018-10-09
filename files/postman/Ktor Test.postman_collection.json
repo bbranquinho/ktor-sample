@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "cb11c017-ccaf-499a-9bd5-a67513a0f488",
+		"name": "Ktor Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9fe9ce35-ac39-422a-9d3c-77b642adc965",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = (responseCode.code === 201);",
+							"",
+							"var aggregateId = JSON.parse(responseBody).id;",
+							"postman.setGlobalVariable(\"aggregate_id\", aggregateId);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Prod\",\n\t\"price\": {\n\t\t\"value\": 1000,\n\t\t\"scale\": 2,\n\t\t\"currency\": \"BR\"\n\t},\n\t\"storeId\": \"123333\"\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find All",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Prod\",\n\t\"price\": {\n\t\t\"value\": 1000,\n\t\t\"scale\": 2,\n\t\t\"currency\": \"BR\"\n\t},\n\t\"storeId\": \"123333\"\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/product/{{aggregate_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"product",
+						"{{aggregate_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Append Event",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Prod\",\n\t\"price\": {\n\t\t\"value\": 100,\n\t\t\"scale\": 2,\n\t\t\"currency\": \"BR\"\n\t},\n\t\"storeId\": \"12\"\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/product/{{aggregate_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"product",
+						"{{aggregate_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
