@@ -11,7 +11,7 @@ class ProductServiceImpl(private val eventRepository: ProductFileEventRepository
     }
 
     override fun save(aggregateId: String, event: ProductEvent) {
-        eventRepository.save(aggregateId = aggregateId, event = event)
+        eventRepository.append(aggregateId = aggregateId, event = event)
     }
 
     override fun findAll(aggregateId: String): List<ProductEvent> =

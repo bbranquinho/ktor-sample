@@ -21,7 +21,7 @@ abstract class EventRepository<T>(val eventName: String, val folderPath: String)
                 .apply { appendText("${event.toJson()}\n") }
     }
 
-    fun save(aggregateId: String, event: T) {
+    fun append(aggregateId: String, event: T) {
         File(buildFilePath(aggregateId))
                 .apply { if (!exists()) throw NotFoundException(aggregateId = aggregateId) }
                 .apply { appendText("${event.toJson()}\n") }

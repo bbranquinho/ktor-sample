@@ -15,6 +15,8 @@
         <ktor.version>0.9.5-rc13</ktor.version>
         <koin.version>1.0.1</koin.version>
         <kconfig.version>1.6.10.0</kconfig.version>
+        <mockito.kotlin.version>1.6.0</mockito.kotlin.version>
+        <mockito.version>2.23.0</mockito.version>
     </properties>
 
     <repositories>
@@ -115,6 +117,21 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Test - Mockito -->
+        <dependency>
+            <groupId>com.nhaarman</groupId>
+            <artifactId>mockito-kotlin</artifactId>
+            <version>${mockito.kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
