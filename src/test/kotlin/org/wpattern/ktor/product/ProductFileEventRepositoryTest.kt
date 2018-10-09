@@ -14,8 +14,8 @@ class ProductFileEventRepositoryTest {
     @Test
     fun `Try to append an event that not exists, it must throw a NotFoundException`() {
         val aggregateId = UUID.randomUUID().toString()
-        val price = ProductEvent.Money(value = 1283, scale = 2, currency = "CAD")
-        val event = ProductEvent(name = "Name", price = price, storeId = UUID.randomUUID().toString())
+        val price = Money(value = 1283, scale = 2, currency = "CAD")
+        val event = ProductEvent("Name", price, UUID.randomUUID().toString())
 
         assertException(
                 expectedException = NotFoundException::class.java,

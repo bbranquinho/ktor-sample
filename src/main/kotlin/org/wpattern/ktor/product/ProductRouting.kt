@@ -38,12 +38,12 @@ fun Routing.productRouting() {
 
 data class ProductRequest(val name: String, val price: MoneyRequest, val storeId: String) {
     fun toEvent() =
-            ProductEvent(name = name, price = price.toEvent(), storeId = storeId)
+            ProductEvent(name, price.toEvent(), storeId)
 }
 
 data class MoneyRequest(val value: Int, val scale: Int, val currency: String) {
     fun toEvent() =
-            ProductEvent.Money(value = value, scale = scale, currency = currency)
+            Money(value = value, scale = scale, currency = currency)
 }
 
 data class AggregateIdResponse(val id: String)
