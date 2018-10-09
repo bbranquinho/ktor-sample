@@ -11,6 +11,7 @@ import io.ktor.routing.patch
 import io.ktor.routing.post
 import io.ktor.routing.put
 import org.koin.ktor.ext.inject
+import org.wpattern.ktor.exceptions.NotFoundException
 
 private const val PRODUCT_BASE_PATH = "/product"
 
@@ -24,12 +25,12 @@ fun Routing.productRouting() {
     }
 
     get("$PRODUCT_BASE_PATH/{id}") {
-        val aggregateId = call.parameters["id"]!!
+        val aggregateId = call.parameters["id"] ?: throw NotFoundException()
         call.respond(productService.findAll(aggregateId))
     }
 
     patch("$PRODUCT_BASE_PATH/{id}") {
-        val aggregateId = call.parameters["id"]!!
+        val aggregateId = call.parameters["id"] ?: throw NotFoundException()
         val product = call.receive<ProductRequest>()
         productService.save(aggregateId, product.toEvent())
         call.respond(HttpStatusCode.Created)
